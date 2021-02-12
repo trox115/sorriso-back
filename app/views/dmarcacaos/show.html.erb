@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @dmarcacao.cliente_id %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @dmarcacao.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @dmarcacao.end %>
+</p>
+
+<%= link_to 'Edit', edit_dmarcacao_path(@dmarcacao) %> |
+<%= link_to 'Back', dmarcacaos_path %>

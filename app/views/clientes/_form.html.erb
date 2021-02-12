@@ -1,0 +1,72 @@
+<%= form_with(model: cliente, local: true) do |form| %>
+  <% if cliente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cliente.errors.count, "error") %> prohibited this cliente from being saved:</h2>
+
+      <ul>
+        <% cliente.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bi %>
+    <%= form.number_field :bi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nif %>
+    <%= form.number_field :nif %>
+  </div>
+
+  <div class="field">
+    <%= form.label :utente %>
+    <%= form.number_field :utente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telefone %>
+    <%= form.number_field :telefone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seguro %>
+    <%= form.text_field :seguro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numSeguro %>
+    <%= form.number_field :numSeguro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :morada %>
+    <%= form.text_area :morada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observacoes %>
+    <%= form.text_area :observacoes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dataNascimento %>
+    <%= form.text_field :dataNascimento %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

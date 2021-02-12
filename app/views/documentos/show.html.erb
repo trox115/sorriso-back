@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @documento.cliente_id %>
+</p>
+
+<p>
+  <strong>Doc categoria:</strong>
+  <%= @documento.doc_categoria_id %>
+</p>
+
+<%= link_to 'Edit', edit_documento_path(@documento) %> |
+<%= link_to 'Back', documentos_path %>

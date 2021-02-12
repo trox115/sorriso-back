@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @orcamento.cliente_id %>
+</p>
+
+<p>
+  <strong>Doc categoria:</strong>
+  <%= @orcamento.doc_categoria_id %>
+</p>
+
+<p>
+  <strong>Validade:</strong>
+  <%= @orcamento.validade %>
+</p>
+
+<p>
+  <strong>Servico:</strong>
+  <%= @orcamento.servico_id %>
+</p>
+
+<%= link_to 'Edit', edit_orcamento_path(@orcamento) %> |
+<%= link_to 'Back', orcamentos_path %>
