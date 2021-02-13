@@ -1,5 +1,5 @@
 class ClientesController < ApplicationController
-  before_action :set_cliente, only: %i[show edit update destroy]
+  before_action :set_cliente, only: %i[show edit update destroy info]
 
   # GET /clientes
   # GET /clientes.json
@@ -30,6 +30,21 @@ class ClientesController < ApplicationController
     else
       format.json { render json: @cliente.errors, status: :unprocessable_entity }
     end
+  end
+
+  def info
+    id = @cliente
+    consultas = Consulta.where(cliente_id: id)
+    orcamentos = Orcamento.where(cliente_id: id)
+    tratamentos = Tratamento.where(cliente_id: id)
+    pagamentos = consultas.reduce(0) { |sum, obj| sum + obj.pagamento }
+    custos = 0
+    consultas.each do |x|
+      servico = Servico.find(x.servico_id)
+      custos+=servico.custo
+    end
+    user_info = {cliente: @cliente, tratamentos: tratamentos, orcamentos: orcamentos, consultas: consultas, custos:custos, pagamentos:pagamentos, divida:(custos-pagamentos) }
+    render json: user_info
   end
 
   # PATCH/PUT /clientes/1

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/clientes', to: 'clientes#index'
   patch '/clientes/:id', to: 'clientes#update'
   post '/inserirCliente', to: 'clientes#create'
-
+  get '/userInfo/:id', to: 'clientes#info'
   post '/inserirProduto', to: 'produtos#create'
   get '/produtos', to: 'produtos#index'
   patch '/editar/produto/:id', to: 'produtos#update'

@@ -23,7 +23,7 @@ class ConsultaController < ApplicationController
   # POST /consulta
   # POST /consulta.json
   def create
-    @consultum = Consulta.new(consultum_params)
+    @consultum = Consulta.new(consulta_params)
 
     respond_to do |format|
       if @consultum.save
@@ -63,8 +63,12 @@ class ConsultaController < ApplicationController
     @consultum = Consulta.find(params[:id])
   end
 
+  def consulta_params
+    params.permit(:cliente_id, :servico_id, :pagamento, :obs, :image)
+  end
+
   # Only allow a list of trusted parameters through.
   def consultum_params
-    params.require(:consultum).permit(:cliente_id, :servico_id, :pagamento, :obs)
+    params.require(:consultum).permit(:cliente_id, :servico_id, :pagamento, :obs, :image)
   end
 end

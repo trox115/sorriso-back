@@ -53,4 +53,5 @@ gem 'jquery-rails'
 gem 'chartkick', '~> 3.4.0'
 gem 'groupdate'
 gem 'rack-cors'
+gem 'active_model_serializers'
 
