@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   post 'inserirTratamento', to: 'tratamentos#create'
   get 'tratamentos', to: 'tratamentos#index'
+  patch '/editarTratamento/:id', to: 'tratamentos#update'
   get '/tratamentos/cliente/:id', to: 'tratamentos#byUser'
 
   get 'docCategoria', to: 'doc_categoria#index'

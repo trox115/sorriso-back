@@ -44,14 +44,11 @@ class TratamentosController < ApplicationController
   # PATCH/PUT /tratamentos/1
   # PATCH/PUT /tratamentos/1.json
   def update
-    respond_to do |format|
-      if @tratamento.update(tratamento_params)
-        format.html { redirect_to @tratamento, notice: 'Tratamento was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tratamento }
-      else
-        format.html { render :edit }
-        format.json { render json: @tratamento.errors, status: :unprocessable_entity }
-      end
+    if @tratamento.update(tratamento_params)
+      render json: @tratamento
+    else
+      format.html { render :edit }
+      format.json { render json: @tratamento.errors, status: :unprocessable_entity }
     end
   end
 

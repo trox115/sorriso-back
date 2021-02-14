@@ -41,9 +41,9 @@ class ClientesController < ApplicationController
     custos = 0
     consultas.each do |x|
       servico = Servico.find(x.servico_id)
-      custos+=servico.custo
+      custos += servico.custo
     end
-    user_info = {cliente: @cliente, tratamentos: tratamentos, orcamentos: orcamentos, consultas: consultas, custos:custos, pagamentos:pagamentos, divida:(custos-pagamentos) }
+    user_info = { cliente: @cliente, tratamentos: tratamentos, orcamentos: orcamentos, consultas: consultas, custos: custos, pagamentos: pagamentos, divida: (custos - pagamentos) }
     render json: user_info
   end
 

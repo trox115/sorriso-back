@@ -39,13 +39,11 @@ class ProdutosController < ApplicationController
   # PATCH/PUT /produtos/1
   # PATCH/PUT /produtos/1.json
   def update
-    respond_to do |format|
-      if @produto.update(produto_params)
-        format.json { render :show, status: :ok, location: @produto }
-      else
-        format.html { render :edit }
-        format.json { render json: @produto.errors, status: :unprocessable_entity }
-      end
+    if @produto.update(produto_params)
+      render json: @produto
+    else
+      format.html { render :edit }
+      format.json { render json: @produto.errors, status: :unprocessable_entity }
     end
   end
 
