@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :videos
   resources :pagamentos
   resources :dmarcacaos
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   resources :servicos
   resources :categoria
   resources :produtos
+  resources :sessions, only: %i[create destroy]
+  get '/loggedin', to: 'sessions#loggedin'
+  get '/logout', to: 'sessions#logout'
   get '/clientes', to: 'clientes#index'
   patch '/clientes/:id', to: 'clientes#update'
   post '/inserirCliente', to: 'clientes#create'
