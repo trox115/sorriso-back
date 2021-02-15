@@ -57,6 +57,6 @@ class DmarcacaosController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def dmarcacao_params
-    params.require(:dmarcacao).permit(:cliente_id, :start, :end)
+    params.require(:dmarcacao).permit(:cliente_id, :start, :end, :tipo)
   end
 end
