@@ -43,15 +43,16 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+gem 'chartkick', '~> 3.4.0'
+gem 'devise'
+gem 'devise'
+gem 'groupdate'
+gem 'jquery-rails'
+gem 'rack-cors'
 gem 'rspec-rails'
 gem 'rubocop'
 gem 'simplecov', require: false, group: :test
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'devise'
-gem 'jquery-rails'
-gem 'chartkick', '~> 3.4.0'
-gem 'groupdate'
-gem 'rack-cors'
-gem 'active_model_serializers'
-
