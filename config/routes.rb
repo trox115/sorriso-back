@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orcamento_details
   devise_for :users
   resources :videos
   resources :pagamentos
@@ -40,6 +41,8 @@ Rails.application.routes.draw do
   get 'docCategoria', to: 'doc_categoria#index'
   post 'inserirOrcamento', to: 'orcamentos#create'
   get 'orcamentos', to: 'orcamentos#index'
+  get 'orcamento/:id', to: 'orcamento_details#orcamento_id'
+  post '/detalhesOrcamento', to: 'orcamento_details#create'
 
   get 'dentes', to: 'dentes#index'
 

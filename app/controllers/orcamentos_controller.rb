@@ -5,7 +5,15 @@ class OrcamentosController < ApplicationController
   # GET /orcamentos.json
   def index
     @orcamentos = Orcamento.all
-    render json: @orcamentos
+    orca = []
+    @orcamentos.each do |x|
+      cliente = Cliente.find(x.cliente_id)
+      data = x.created_at
+      id = x.id
+      object = {id: id, data: data, cliente: cliente}
+      orca.push(object)
+    end
+    render json: orca
   end
 
   # GET /orcamentos/1
@@ -22,27 +30,28 @@ class OrcamentosController < ApplicationController
   def edit
   end
 
+
   # POST /orcamentos
   # POST /orcamentos.json
   def create
     @orcamento = Orcamento.new(orcamento_params)
-    pp @orcamento.errors
-    @orcamento.save
-    render json:'done'
+      if @orcamento.save
+        render json: @orcamento
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @orcamento.errors, status: :unprocessable_entity }
+      end
   end
 
   # PATCH/PUT /orcamentos/1
   # PATCH/PUT /orcamentos/1.json
   def update
-    respond_to do |format|
       if @orcamento.update(orcamento_params)
-        format.html { redirect_to @orcamento, notice: 'Orcamento was successfully updated.' }
-        format.json { render :show, status: :ok, location: @orcamento }
+        render json: @orcamento
       else
         format.html { render :edit }
         format.json { render json: @orcamento.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # DELETE /orcamentos/1
@@ -63,6 +72,6 @@ class OrcamentosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def orcamento_params
-      params.require(:orcamento).permit(:cliente_id, :doc_categoria_id, :validade, :servico_id)
+      params.require(:orcamento).permit(:cliente_id, :validade, :servico_id)
     end
 end

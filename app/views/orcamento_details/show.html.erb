@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orcamento:</strong>
+  <%= @orcamento_detail.orcamento_id %>
+</p>
+
+<p>
+  <strong>Servico:</strong>
+  <%= @orcamento_detail.servico_id %>
+</p>
+
+<p>
+  <strong>Dente:</strong>
+  <%= @orcamento_detail.dente_id %>
+</p>
+
+<%= link_to 'Edit', edit_orcamento_detail_path(@orcamento_detail) %> |
+<%= link_to 'Back', orcamento_details_path %>

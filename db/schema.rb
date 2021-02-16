@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_100851) do
+ActiveRecord::Schema.define(version: 2021_02_15_224136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,15 +103,24 @@ ActiveRecord::Schema.define(version: 2021_02_15_100851) do
     t.index ["doc_categoria_id"], name: "index_documentos_on_doc_categoria_id"
   end
 
+  create_table "orcamento_details", force: :cascade do |t|
+    t.bigint "orcamento_id", null: false
+    t.bigint "servico_id", null: false
+    t.bigint "dente_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dente_id"], name: "index_orcamento_details_on_dente_id"
+    t.index ["orcamento_id"], name: "index_orcamento_details_on_orcamento_id"
+    t.index ["servico_id"], name: "index_orcamento_details_on_servico_id"
+  end
+
   create_table "orcamentos", force: :cascade do |t|
     t.bigint "cliente_id", null: false
-    t.bigint "doc_categoria_id", null: false
     t.datetime "validade"
     t.bigint "servico_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cliente_id"], name: "index_orcamentos_on_cliente_id"
-    t.index ["doc_categoria_id"], name: "index_orcamentos_on_doc_categoria_id"
     t.index ["servico_id"], name: "index_orcamentos_on_servico_id"
   end
 
@@ -181,8 +190,10 @@ ActiveRecord::Schema.define(version: 2021_02_15_100851) do
   add_foreign_key "dmarcacaos", "clientes"
   add_foreign_key "documentos", "clientes"
   add_foreign_key "documentos", "doc_categoria", column: "doc_categoria_id"
+  add_foreign_key "orcamento_details", "dentes"
+  add_foreign_key "orcamento_details", "orcamentos"
+  add_foreign_key "orcamento_details", "servicos"
   add_foreign_key "orcamentos", "clientes"
-  add_foreign_key "orcamentos", "doc_categoria", column: "doc_categoria_id"
   add_foreign_key "orcamentos", "servicos"
   add_foreign_key "pagamentos", "clientes"
   add_foreign_key "pagamentos", "consulta", column: "consulta_id"
