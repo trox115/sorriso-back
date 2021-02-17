@@ -5,7 +5,27 @@ class ConsultaController < ApplicationController
   # GET /consulta.json
   def index
     @consulta = Consulta.all
-    render json: @consulta
+    consulta = []
+    pagamento = 0;
+    @consulta.each do |x|
+     cliente = Cliente.find(x.cliente_id)
+     tratamentos1 = ConsultaDetail.where(consulta_id: x.id)
+     tratamentos = []
+     custo = 0
+     tratamentos1.each do |x|
+      t = Tratamento.find(x.tratamento_id)
+      dente = Dente.find(t.dente_id)
+      servico = Servico.find(x.id)
+      tratamentos.push({dente:dente.nome, servico:{nome:servico.nome, custo:servico.custo}})
+      custo += servico.custo
+     end
+     pagamentos = Pagamento.where(consulta_id: x.id)
+     pp pagamentos
+     pagamento = pagamentos.inject(0){|sum,x| sum.to_i + x.valor }
+     consulta.push({id: x.id, cliente: cliente, tratamentos: tratamentos, pagamento: pagamento, custo: custo})
+    end
+
+    render json: consulta
   end
 
   # GET /consulta/1
@@ -24,16 +44,13 @@ class ConsultaController < ApplicationController
   # POST /consulta.json
   def create
     @consultum = Consulta.new(consulta_params)
-
-    respond_to do |format|
+    pp @consultum
       if @consultum.save
-        format.html { redirect_to @consultum, notice: 'Consultum was successfully created.' }
-        format.json { render :show, status: :created, location: @consultum }
+        render json: @consultum
       else
         format.html { render :new }
         format.json { render json: @consultum.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /consulta/1
@@ -64,11 +81,11 @@ class ConsultaController < ApplicationController
   end
 
   def consulta_params
-    params.permit(:cliente_id, :servico_id, :pagamento, :obs, :image)
+    params.permit(:cliente_id, :pagamento, :obs, :image)
   end
 
   # Only allow a list of trusted parameters through.
   def consultum_params
-    params.require(:consultum).permit(:cliente_id, :servico_id, :pagamento, :obs, :image)
+    params.require(:consultum).permit(:cliente_id, :pagamento, :obs, :image)
   end
 end

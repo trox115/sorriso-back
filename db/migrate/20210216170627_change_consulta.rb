@@ -1,0 +1,5 @@
+class ChangeConsulta < ActiveRecord::Migration[6.0]
+  def change
+    remove_column :consulta, :servico_id
+  end
+end

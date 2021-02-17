@@ -30,15 +30,12 @@ class TratamentosController < ApplicationController
   def create
     @tratamento = Tratamento.new(tratamento_params)
 
-    respond_to do |format|
       if @tratamento.save
-        format.html { redirect_to @tratamento, notice: 'Tratamento was successfully created.' }
-        format.json { render :show, status: :created, location: @tratamento }
+        render json: @tratamento
       else
         format.html { render :new }
         format.json { render json: @tratamento.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /tratamentos/1

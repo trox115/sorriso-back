@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_224136) do
+ActiveRecord::Schema.define(version: 2021_02_16_173706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,22 @@ ActiveRecord::Schema.define(version: 2021_02_15_224136) do
 
   create_table "consulta", force: :cascade do |t|
     t.bigint "cliente_id", null: false
-    t.bigint "servico_id", null: false
     t.text "obs"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "pagamento", default: 0
     t.index ["cliente_id"], name: "index_consulta_on_cliente_id"
-    t.index ["servico_id"], name: "index_consulta_on_servico_id"
+  end
+
+  create_table "consulta_details", force: :cascade do |t|
+    t.bigint "tratamento_id", null: false
+    t.bigint "consulta_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "servico_id", null: false
+    t.index ["consulta_id"], name: "index_consulta_details_on_consulta_id"
+    t.index ["servico_id"], name: "index_consulta_details_on_servico_id"
+    t.index ["tratamento_id"], name: "index_consulta_details_on_tratamento_id"
   end
 
   create_table "dentes", force: :cascade do |t|
@@ -186,7 +195,9 @@ ActiveRecord::Schema.define(version: 2021_02_15_224136) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "consulta", "clientes"
-  add_foreign_key "consulta", "servicos"
+  add_foreign_key "consulta_details", "consulta", column: "consulta_id"
+  add_foreign_key "consulta_details", "servicos"
+  add_foreign_key "consulta_details", "tratamentos"
   add_foreign_key "dmarcacaos", "clientes"
   add_foreign_key "documentos", "clientes"
   add_foreign_key "documentos", "doc_categoria", column: "doc_categoria_id"

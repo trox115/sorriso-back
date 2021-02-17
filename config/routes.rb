@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :consulta_details
   resources :orcamento_details
   devise_for :users
   resources :videos
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
   get 'orcamentos', to: 'orcamentos#index'
   get 'orcamento/:id', to: 'orcamento_details#orcamento_id'
   post '/detalhesOrcamento', to: 'orcamento_details#create'
+  post 'detalhesConsulta', to: 'consulta_details#create'
 
   get 'dentes', to: 'dentes#index'
 

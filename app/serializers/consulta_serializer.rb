@@ -1,6 +1,6 @@
 class ConsultaSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :cliente_id, :servico_id, :pagamento, :obs, :image
+  attributes :id, :cliente_id, :pagamento, :obs, :image
   def image
     pp :id
     if object.image.attached?

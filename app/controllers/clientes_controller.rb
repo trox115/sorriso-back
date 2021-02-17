@@ -40,9 +40,14 @@ class ClientesController < ApplicationController
     pagamentos = consultas.reduce(0) { |sum, obj| sum + obj.pagamento }
     custos = 0
     consultas.each do |x|
+     detalhes = ConsultaDetail.where(consulta_id: x.id)
+     detalhes.each do |x|
       servico = Servico.find(x.servico_id)
-      custos += servico.custo
-    end
+      cus = servico.custo
+      custos += cus
+     end
+    end 
+      
     user_info = { cliente: @cliente, tratamentos: tratamentos, orcamentos: orcamentos, consultas: consultas, custos: custos, pagamentos: pagamentos, divida: (custos - pagamentos) }
     render json: user_info
   end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tratamento:</strong>
+  <%= @consulta_detail.tratamento_id %>
+</p>
+
+<p>
+  <strong>Consulta:</strong>
+  <%= @consulta_detail.consulta_id %>
+</p>
+
+<%= link_to 'Edit', edit_consulta_detail_path(@consulta_detail) %> |
+<%= link_to 'Back', consulta_details_path %>

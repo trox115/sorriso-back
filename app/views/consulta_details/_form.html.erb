@@ -1,0 +1,27 @@
+<%= form_with(model: consulta_detail, local: true) do |form| %>
+  <% if consulta_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(consulta_detail.errors.count, "error") %> prohibited this consulta_detail from being saved:</h2>
+
+      <ul>
+        <% consulta_detail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tratamento_id %>
+    <%= form.text_field :tratamento_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :consulta_id %>
+    <%= form.text_field :consulta_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Consulta Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tratamento</th>
+      <th>Consulta</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consulta_details.each do |consulta_detail| %>
+      <tr>
+        <td><%= consulta_detail.tratamento_id %></td>
+        <td><%= consulta_detail.consulta_id %></td>
+        <td><%= link_to 'Show', consulta_detail %></td>
+        <td><%= link_to 'Edit', edit_consulta_detail_path(consulta_detail) %></td>
+        <td><%= link_to 'Destroy', consulta_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consulta Detail', new_consulta_detail_path %>
