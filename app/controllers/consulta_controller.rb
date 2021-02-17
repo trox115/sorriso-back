@@ -15,7 +15,7 @@ class ConsultaController < ApplicationController
      tratamentos1.each do |x|
       t = Tratamento.find(x.tratamento_id)
       dente = Dente.find(t.dente_id)
-      servico = Servico.find(x.id)
+      servico = Servico.find(x.servico_id)
       tratamentos.push({dente:dente.nome, servico:{nome:servico.nome, custo:servico.custo}})
       custo += servico.custo
      end
