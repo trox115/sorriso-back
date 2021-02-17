@@ -12,6 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/app/controllers/application_controller.rb
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
