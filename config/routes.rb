@@ -51,9 +51,10 @@ Rails.application.routes.draw do
   post 'inserirMarcacao', to: 'dmarcacaos#create'
   get '/marcacoes', to: 'dmarcacaos#index'
   patch '/editar/marcacao/:id', to: 'dmarcacaos#update'
+  patch '/remover/marcacao/:id', to: 'dmarcacaos#destroy'
 
   post '/inserirPagamento', to: 'pagamentos#create'
-
+  get 'dashboard', to: 'dashboard#dashboard'
   get '/videos', to: 'videos#index'
   post '/inserVideo', to: 'videos#create'
 

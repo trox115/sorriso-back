@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_173706) do
+ActiveRecord::Schema.define(version: 2021_02_21_203941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2021_02_16_173706) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
-    t.integer "bi"
-    t.integer "nif"
-    t.integer "utente"
+    t.bigint "bi"
+    t.bigint "nif"
+    t.bigint "utente"
     t.integer "telefone"
     t.string "email"
     t.boolean "seguro"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_173706) do
     t.string "estado"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "obs"
     t.index ["cliente_id"], name: "index_tratamentos_on_cliente_id"
     t.index ["dente_id"], name: "index_tratamentos_on_dente_id"
   end

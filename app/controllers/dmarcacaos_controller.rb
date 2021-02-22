@@ -42,6 +42,12 @@ class DmarcacaosController < ApplicationController
   # DELETE /dmarcacaos/1.json
   def destroy
     @dmarcacao.destroy
+    @dmarcacaos = Dmarcacao.all
+    render json: @dmarcacaos 
+  end
+
+  def andor
+    @dmarcacao.destroy
     respond_to do |format|
       format.html { redirect_to dmarcacaos_url, notice: 'Dmarcacao was successfully destroyed.' }
       format.json { head :no_content }

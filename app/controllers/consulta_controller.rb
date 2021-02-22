@@ -16,7 +16,7 @@ class ConsultaController < ApplicationController
       t = Tratamento.find(x.tratamento_id)
       dente = Dente.find(t.dente_id)
       servico = Servico.find(x.servico_id)
-      tratamentos.push({dente:dente.nome, servico:{nome:servico.nome, custo:servico.custo}})
+      tratamentos.push({dente:dente.nome, obs:t.obs, servico:{nome:servico.nome, custo:servico.custo}})
       custo += servico.custo
      end
      pagamentos = Pagamento.where(consulta_id: x.id)
@@ -44,7 +44,6 @@ class ConsultaController < ApplicationController
   # POST /consulta.json
   def create
     @consultum = Consulta.new(consulta_params)
-    pp @consultum
       if @consultum.save
         render json: @consultum
       else
