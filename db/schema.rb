@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_203941) do
+ActiveRecord::Schema.define(version: 2021_02_28_175448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2021_02_21_203941) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "bocas", force: :cascade do |t|
+    t.bigint "cliente_id", null: false
+    t.bigint "servico_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "consulta_id", null: false
+    t.string "obs"
+    t.index ["cliente_id"], name: "index_bocas_on_cliente_id"
+    t.index ["consulta_id"], name: "index_bocas_on_consulta_id"
+    t.index ["servico_id"], name: "index_bocas_on_servico_id"
   end
 
   create_table "categoria", force: :cascade do |t|
@@ -195,6 +207,9 @@ ActiveRecord::Schema.define(version: 2021_02_21_203941) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bocas", "clientes"
+  add_foreign_key "bocas", "consulta", column: "consulta_id"
+  add_foreign_key "bocas", "servicos"
   add_foreign_key "consulta", "clientes"
   add_foreign_key "consulta_details", "consulta", column: "consulta_id"
   add_foreign_key "consulta_details", "servicos"

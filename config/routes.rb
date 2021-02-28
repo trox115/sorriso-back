@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bocas
   resources :consulta_details
   resources :orcamento_details
   devise_for :users
@@ -21,9 +22,11 @@ Rails.application.routes.draw do
   patch '/clientes/:id', to: 'clientes#update'
   post '/inserirCliente', to: 'clientes#create'
   get '/userInfo/:id', to: 'clientes#info'
+  delete '/eliminar/:id', to: 'clientes#destroy'
   post '/inserirProduto', to: 'produtos#create'
   get '/produtos', to: 'produtos#index'
   patch '/editar/produto/:id', to: 'produtos#update'
+  delete '/eliminarServico/:id', to: 'servicos#destroy'
 
   post '/inserirCategoria', to: 'categoria#create'
   get 'categorias', to: 'categoria#index'
@@ -33,6 +36,9 @@ Rails.application.routes.draw do
   post 'inserirConsulta', to: 'consulta#create'
   patch 'editarConsulta/:id', to: 'consulta#update'
   get 'consultas', to: 'consulta#index'
+
+  post 'inserirBocaToda', to: 'consulta#tratamentoBocaToda'
+
 
   post 'inserirTratamento', to: 'tratamentos#create'
   get 'tratamentos', to: 'tratamentos#index'

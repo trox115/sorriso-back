@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bocas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Servico</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bocas.each do |boca| %>
+      <tr>
+        <td><%= boca.cliente_id %></td>
+        <td><%= boca.servico_id %></td>
+        <td><%= link_to 'Show', boca %></td>
+        <td><%= link_to 'Edit', edit_boca_path(boca) %></td>
+        <td><%= link_to 'Destroy', boca, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Boca', new_boca_path %>

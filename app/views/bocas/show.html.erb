@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @boca.cliente_id %>
+</p>
+
+<p>
+  <strong>Servico:</strong>
+  <%= @boca.servico_id %>
+</p>
+
+<%= link_to 'Edit', edit_boca_path(@boca) %> |
+<%= link_to 'Back', bocas_path %>
