@@ -18,18 +18,18 @@ class ConsultaController < ApplicationController
         dente = Dente.find(t.dente_id)
         servico = Servico.find(x.servico_id)
         tratamentos.push({ dente: dente.nome, obs: t.obs, servico: { nome: servico.nome, custo: servico.custo } })
-        custo += servico.custo
+        custo += servico.custo.to_i
       end
       pp tratamentos2
       tratamentos2.each do |x|
         servico = Servico.find(x.servico_id)
         pp servico
         tratamentos.push({ obs: x.obs, servico: { nome: servico.nome, custo: servico.custo } })
-        custo += servico.custo
+        custo += servico.custo.to_i
       end
 
       pagamentos = Pagamento.where(consulta_id: x.id)
-      pagamento = pagamentos.inject(0) { |sum, x| sum.to_i + x.valor }
+      pagamento = pagamentos.inject(0) { |sum, x| sum.to_i + x.valor.to_i }
       consulta.push({ id: x.id, cliente: cliente, tratamentos: tratamentos, pagamento: pagamento, custo: custo })
     end
 
